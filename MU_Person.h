@@ -42,7 +42,7 @@
 using namespace std;
 
 // สืบทอดจากทั้ง Thai_person และ NODE
-class MU_person : public Thai_person, public NODE {
+class MU_person : public NODE, public Thai_person { //เปลี่ยนจาก class MU_person : public Thai_person, public NODE
 protected:
     long id;
     string name;
