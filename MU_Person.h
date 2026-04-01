@@ -1,69 +1,74 @@
-#include "Thai_person.h"
-class MU_person:public Thai_person{
-private: 
-protected:
-  long id;
-  string name;
+// #include "Thai_person.h"
+// class MU_person:public Thai_person{
+// private: 
+// protected:
+//   long id;
+//   string name;
 
 
-public:
-  MU_person(long=112 ,string ="Prapaporn",long=1234);
-  void display_person();
-  ~MU_person();
-};
+// public:
+//   MU_person(long=112 ,string ="Prapaporn",long=1234);
+//   void display_person();
+//   ~MU_person();
+// };
 
 
 
-MU_person::~MU_person(){
-  cout<<"Destructor id="<<id<<endl;
-}
-MU_person::MU_person(long x,string n,long nid):Thai_person(nid){
-      // Set up all MU_Person values
-        id=x;
-        name=n;
-         cout<<"MU person constructor "<<id<<endl;
-}
+// MU_person::~MU_person(){
+//   cout<<"Destructor id="<<id<<endl;
+// }
+// MU_person::MU_person(long x,string n,long nid):Thai_person(nid){
+//       // Set up all MU_Person values
+//         id=x;
+//         name=n;
+//          cout<<"MU person constructor "<<id<<endl;
+// }
 
-void MU_person::display_person(){
-  cout<<"Show info of person"
-  cout<<" id "<< id<<endl;
-  cout<<" name "<<name<<endl;
+// void MU_person::display_person(){
+//   cout<<"Show info of person"
+//   cout<<" id "<< id<<endl;
+//   cout<<" name "<<name<<endl;
     
-}
+// } เก็บไว้ เผื่อพัง
+
 
 #ifndef MU_PERSON_H
 #define MU_PERSON_H
 
-// #include <iostream>
-// #include <string>
-// #include "Thai_person.h"
-// using namespace std;
+#include <iostream>
+#include <string>
+#include "Thai_person.h"
+#include "NODE.h" // ต้อง Include NODE เข้ามาเพื่อทำสืบทอด
+using namespace std;
 
-// class MU_person : public Thai_person {
-// protected: // ใช้ protected เพื่อให้คลาสลูก (student) สามารถเข้าถึง id และ name ได้หากจำเป็น
-//     long id;
-//     string name;
+// สืบทอดจากทั้ง Thai_person และ NODE
+class MU_person : public Thai_person, public NODE {
+protected:
+    long id;
+    string name;
 
-// public:
-//     MU_person(long = 112, string = "Prapaporn", long = 1234);
-//     void display_person();
-//     ~MU_person();
-// };
+public:
+    MU_person(long = 112, string = "Prapaporn", long = 1234);
+    void display_person();
+    ~MU_person();
+};
 
-// MU_person::MU_person(long x, string n, long nid) : Thai_person(nid) {
-//     // กำหนดค่าให้ MU_person
-//     id = x;
-//     name = n;
-//     cout << "MU person constructor " << id << endl;
-// }
+// นำ id (x) ส่งขึ้นไปเป็น data ของ NODE 
+MU_person::MU_person(long x, string n, long nid) : Thai_person(nid), NODE(x) {
+    id = x;
+    name = n;
+    cout << "MU person constructor " << id << endl;
+}
 
-// void MU_person::display_person() {
-//     cout << " id: " << id << endl;
-//     cout << " name: " << name << endl;
-// }
+void MU_person::display_person() {
+    // ข้อ 1.5 เรียก display_thai() เพื่อแสดงค่าทุกอย่าง
+    display_thai();
+    cout << " id: " << id << endl;
+    cout << " name: " << name << endl;
+}
 
-// MU_person::~MU_person() {
-//     cout << "Destructor id=" << id << endl;
-// }
+MU_person::~MU_person() {
+    // ปล่อยว่างไว้ให้ตรงกับผลลัพธ์ตัวอย่าง
+}
 
 #endif
