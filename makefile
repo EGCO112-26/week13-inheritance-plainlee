@@ -1,9 +1,2 @@
-compile: LL_test.cpp 
-	 g++  NODE.cpp LL.cpp LL_test.cpp -o LL
-
-run: LL
-	 ./LL
-
-
-clean: LL
-	 rm LL
+target : MU_Person.h student.h main.cpp
+	g++ NODE.cpp LL.cpp LL_test.cpp -o inh
